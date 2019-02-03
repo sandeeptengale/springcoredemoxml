@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--Refer the external file for properties-->
+    <context:property-placeholder location="classpath:sports.properties" />
+
+    <bean
+            id="myFortuneService"
+            class="com.sandeep.springdemo.HappyFortuneService"/>
+
+    <bean id="newFortuneService"
+          class="com.sandeep.springdemo.HappyFortuneService"/>
+
+    <bean
+            id="myCoach"
+            class="com.sandeep.springdemo.TrackCoach">
+        <!-- Constructor injection-->
+        <constructor-arg ref="myFortuneService"/>
+    </bean>
+
+    <bean id="cricketCoach"
+          class="com.sandeep.springdemo.CricketCoach">
+        <!-- Setter injection-->
+        <property name="fortuneService" ref="newFortuneService"/>
+        <property name="email" value="sandeep.tengale@gmail.com" />
+        <property name="teamName" value="India" />
+        <!--Refer from external file called sports.properties-->
+        <property name="age" value="${foo.age}" />
+        <property name="athleteType" value="${foo.athleteType}" />
+    </bean>
+</beans>
+
+
+
+
+
