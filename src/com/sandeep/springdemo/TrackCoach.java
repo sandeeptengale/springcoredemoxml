@@ -17,4 +17,13 @@ public class TrackCoach implements Coach {
 		return this.fortuneService.getFortune();
 	}
 
+	//init method
+	public void doInitilize() {
+		System.out.println("TrackCoach: start initialization process" );
+	}
+
+	//destroy method
+	public void doDestroy() {
+		System.out.println("TrackCoach: Destroy the bean");
+	}
 }
